@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1228 Systems — AI automation, agents, and digital systems for businesses that move fast. Based in Philadelphia, PA.">
+<title>1228 SYSTEMS — AI Automation Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060608;
+    --bg2: #0d0d11;
+    --bg3: #13131a;
+    --border: rgba(255,255,255,0.07);
+    --border-hi: rgba(255,255,255,0.15);
+    --accent: #00ff9d;
+    --accent2: #0af;
+    --text: #e8e8f0;
+    --text2: #7a7a90;
+    --text3: #4a4a60;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,6,8,0.90);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--text2); font-weight: 400; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text2);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* TICKER */
+  .ticker-wrap {
+    margin-top: 72px;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 12px 0;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 0 32px;
+  }
+
+  .ticker-item span { color: var(--accent); margin-right: 16px; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-h1 {
+    font-family: var(--sans);
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin-bottom: 24px;
+  }
+
+  .hero-h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  }
+
+  .hero-h1 .accent-word { color: var(--accent); }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary::after { content: ' →'; }
+  .btn-primary:hover { background: #00e68a; transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border-hi);
+    padding: 15px 32px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* TERMINAL */
+  .terminal {
+    background: var(--bg3);
+    border: 1px solid var(--border-hi);
+    padding: 24px 28px;
+    margin-top: 48px;
+    max-width: 620px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .terminal::before {
+    content: '● ● ●';
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--text3);
+  }
+
+  .terminal-body {
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 2;
+    color: var(--text2);
+    padding-top: 16px;
+  }
+
+  .t-green { color: var(--accent); }
+  .t-blue { color: var(--accent2); }
+  .t-dim { color: var(--text3); }
+
+  .t-blink {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--accent);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* STATS */
+  .stats-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .stat-item {
+    background: var(--bg);
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* SECTIONS */
+  .section-wrap {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .section-h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  /* SERVICES */
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 64px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--bg2);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+  }
+
+  .service-card:hover { background: var(--bg3); }
+  .service-card:hover .service-line { width: 100%; }
+
+  .service-line {
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 24px;
+    transition: width 0.4s ease;
+  }
+
+  .service-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .service-desc {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-hi);
+    color: var(--text3);
+    padding: 4px 10px;
+  }
+
+  /* PRODUCTS */
+  .products-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--border);
+    width: 100%;
+  }
+
+  .products-inner {
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 64px;
+  }
+
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .product-card:hover { border-color: var(--border-hi); }
+  .product-card.featured { border-color: var(--accent); background: rgba(0,255,157,0.03); }
+
+  .product-badge {
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 4px 10px;
+    font-weight: 700;
+  }
+
+  .product-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-hi);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .product-name {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .product-desc {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .product-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .price-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .price-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .product-btn {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border-hi);
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+
+  .product-btn:hover,
+  .product-card.featured .product-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* PROCESS */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 64px;
+  }
+
+  .process-step {
+    background: var(--bg2);
+    padding: 32px 28px;
+  }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text3);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.9;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 100px 40px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0,255,157,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-h2 {
+    font-size: clamp(32px, 5vw, 60px);
+    max-width: 700px;
+    margin: 0 auto 20px;
+  }
+
+  .cta-section .section-sub {
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--text3);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .section-wrap { padding: 60px 20px; }
+    .services-header { grid-template-columns: 1fr; gap: 32px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .products-inner { padding: 0 20px; }
+    .products-section { padding: 60px 0; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-section { padding: 60px 20px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .hero-h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">1228<span>_</span>SYSTEMS</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get started</a>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span>◆</span>AI Automation</span>
+    <span class="ticker-item"><span>◆</span>Agent Systems</span>
+    <span class="ticker-item"><span>◆</span>Digital Products</span>
+    <span class="ticker-item"><span>◆</span>RAG Pipelines</span>
+    <span class="ticker-item"><span>◆</span>Business Intelligence</span>
+    <span class="ticker-item"><span>◆</span>Workflow Automation</span>
+    <span class="ticker-item"><span>◆</span>LLM Integration</span>
+    <span class="ticker-item"><span>◆</span>AI Consulting</span>
+    <span class="ticker-item"><span>◆</span>AI Automation</span>
+    <span class="ticker-item"><span>◆</span>Agent Systems</span>
+    <span class="ticker-item"><span>◆</span>Digital Products</span>
+    <span class="ticker-item"><span>◆</span>RAG Pipelines</span>
+    <span class="ticker-item"><span>◆</span>Business Intelligence</span>
+    <span class="ticker-item"><span>◆</span>Workflow Automation</span>
+    <span class="ticker-item"><span>◆</span>LLM Integration</span>
+    <span class="ticker-item"><span>◆</span>AI Consulting</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Est. 2025 — Philadelphia, PA</div>
+  <h1 class="hero-h1">
+    We Build<br>
+    <span class="accent-word">AI Systems</span><br>
+    That <em>Work</em>
+  </h1>
+  <p class="hero-sub">
+    // Automation infrastructure for businesses that move fast.<br>
+    AI agents, intelligent workflows, and digital tools —<br>
+    deployed and revenue-generating in weeks, not months.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Book a strategy call</a>
+    <a href="#products" class="btn-ghost">View products</a>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-body">
+      <div><span class="t-dim">$</span> <span class="t-green">1228sys</span> <span class="t-blue">init</span> --client="your-business"</div>
+      <div><span class="t-dim">→ Analyzing workflows...</span></div>
+      <div><span class="t-dim">→ Identifying automation opportunities...</span></div>
+      <div><span class="t-green">✓ System blueprint ready. ROI projection: +340% efficiency</span></div>
+      <div><span class="t-dim">→ </span><span class="t-blink"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">48h</div>
+    <div class="stat-label">First prototype delivered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10x</div>
+    <div class="stat-label">Avg workflow speed increase</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Core service pillars</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Scale, no extra headcount</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="services-header">
+      <div>
+        <div class="section-label">What we do</div>
+        <h2 class="section-h2">Systems built for<br>serious operators</h2>
+      </div>
+      <div>
+        <p class="section-sub">Every service is architected around one thing: measurable business output. No fluff, no buzzwords — just working AI that compounds your existing operations.</p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card" data-num="01">
+        <div class="service-line"></div>
+        <div class="service-name">AI Automation</div>
+        <p class="service-desc">End-to-end automation of your most time-consuming workflows. Lead follow-up, onboarding, reporting, ops — all running autonomously.</p>
+        <div class="service-tags">
+          <span class="tag">Zapier / Make</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Custom pipelines</span>
+        </div>
+      </div>
+      <div class="service-card" data-num="02">
+        <div class="service-line"></div>
+        <div class="service-name">AI Agent Systems</div>
+        <p class="service-desc">Custom-built agents that reason, retrieve, and act. From customer-facing chatbots to internal knowledge agents — deployed on your stack.</p>
+        <div class="service-tags">
+          <span class="tag">RAG</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Claude + GPT-4</span>
+        </div>
+      </div>
+      <div class="service-card" data-num="03">
+        <div class="service-line"></div>
+        <div class="service-name">Done-For-You Products</div>
+        <p class="service-desc">Pre-built AI tools scoped to your industry. Buy once, deploy immediately. Templates, agents, and toolkits ready to generate revenue on day one.</p>
+        <div class="service-tags">
+          <span class="tag">Plug-and-play</span>
+          <span class="tag">White-label</span>
+          <span class="tag">Fast deploy</span>
+        </div>
+      </div>
+      <div class="service-card" data-num="04">
+        <div class="service-line"></div>
+        <div class="service-name">Strategy & Consulting</div>
+        <p class="service-desc">Not sure where AI fits in your business? We audit your ops, identify the highest-leverage entry points, and build the roadmap.</p>
+        <div class="service-tags">
+          <span class="tag">AI audit</span>
+          <span class="tag">Roadmap</span>
+          <span class="tag">ROI modeling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="section-label">Digital products</div>
+    <h2 class="section-h2">Buy. Deploy. Profit.</h2>
+    <p class="section-sub">Pre-built AI systems you can purchase today and start using immediately. No custom dev required.</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">⚡</div>
+        <div class="product-name">AI Lead Engine</div>
+        <p class="product-desc">Automated lead capture, qualification, and follow-up. Plug into your CRM and watch it run 24/7.</p>
+        <div class="product-price">
+          <span class="price-num">$297</span>
+          <span class="price-period">one-time</span>
+        </div>
+        <a href="#contact" class="product-btn">Get the system</a>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-badge">Most popular</div>
+        <div class="product-icon">🧠</div>
+        <div class="product-name">Business Brain</div>
+        <p class="product-desc">A custom AI assistant trained on your business docs, SOPs, and FAQs. Your team's always-on knowledge base.</p>
+        <div class="product-price">
+          <span class="price-num">$497</span>
+          <span class="price-period">one-time</span>
+        </div>
+        <a href="#contact" class="product-btn">Get the system</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">📡</div>
+        <div class="product-name">Content OS</div>
+        <p class="product-desc">AI-powered content pipeline. From idea to published post across platforms — fully automated with your brand voice.</p>
+        <div class="product-price">
+          <span class="price-num">$197</span>
+          <span class="price-period">one-time</span>
+        </div>
+        <a href="#contact" class="product-btn">Get the system</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-wrap">
+    <div class="section-label">How we work</div>
+    <h2 class="section-h2">From zero to deployed<br>in 4 steps</h2>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Audit</div>
+        <p class="step-desc">We map your current ops, identify bottlenecks, and quantify what automation is worth to your business.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Design</div>
+        <p class="step-desc">We scope the system architecture — agents, triggers, data flows — built specifically for your stack and team.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Build</div>
+        <p class="step-desc">We ship a working prototype in 48 hours. Then iterate fast with real feedback until it's exactly right.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Deploy</div>
+        <p class="step-desc">Live, monitored, and documented. Your team gets a full handoff with training so you own it from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<div class="cta-section" id="contact">
+  <div class="section-label" style="justify-content:center;">Ready to build</div>
+  <h2 class="section-h2">Stop doing manually<br>what AI can run</h2>
+  <p class="section-sub">Book a free 30-minute strategy call. We'll tell you exactly where AI fits in your business and what it's worth.</p>
+  <div class="cta-actions">
+    <a href="mailto:hello@1228systems.com" class="btn-primary">Book free call</a>
+    <a href="#products" class="btn-ghost">Browse products</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">© 2025 — 1228 SYSTEMS LLC</div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">Built different. Running always.</div>
+</footer>
+
+</body>
+</html>
